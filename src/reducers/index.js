@@ -7,7 +7,7 @@ const reducer = (state = initialState, action) => {
         case 'MENU_LOADED':
             return{
                 menu: action.payload
-            }
+            };
         default: 
             return state;
     }
