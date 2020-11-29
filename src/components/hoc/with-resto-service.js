@@ -6,8 +6,8 @@ const WithRestoService = () => (Wrapped) => { //Wrapped это компонен�
         return (
             <RestoServiceContext.Consumer>
                 {//функциоаньный компонент, поэтому можно открыть скобки 
-                    (RestoServ) => { //RestoService из app придет (provider) 
-                        return<Wrapped {...props} RestoServ={RestoServ}/>  //говорит о том, что нам нужны все ...props которые были сюда переданы, мы их сразу деструктурируем 
+                    (RestServ) => { //RestService из app придет (provider) 
+                        return<Wrapped {...props} RestServ={RestServ}/>  //говорит о том, что нам нужны все ...props которые были сюда переданы, мы их сразу деструктурируем 
                 }}
             </RestoServiceContext.Consumer>
         )
