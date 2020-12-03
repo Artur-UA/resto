@@ -1,6 +1,6 @@
 export default class RestServ {
 
-    url = 'http://localhost:3000/menu';
+    url = 'http://localhost:3000/menu/';
     
     getMenuItem = async () => {
 
