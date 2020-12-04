@@ -9,7 +9,7 @@ export default class RestServ {
         if(!res.ok){
             throw new Error(`Could not fetch ${this.url}, status: ${res.status}`)
         }
-        const result = await res.json();
-        return result;
+        return await res.json();
+        
     }
 }
