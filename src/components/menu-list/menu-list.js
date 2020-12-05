@@ -2,13 +2,15 @@ import React, {Component} from 'react';
 import MenuListItem from '../menu-list-item';
 import {connect} from 'react-redux'
 import WithRestoService from '../hoc'//это компонент высшего порядка. он нам нужен только для того, чтобы не писать везде Consumer, это нужно чтбы передавать везде state где нужно        MenuList получает из констекста доступ к сервису 
-import {menuLoaded} from '../../actions'
+import {menuLoaded, menuRequested, menuError} from '../../actions'
 
 import './menu-list.scss';
+import Spinner from '../spinner/spinner';
 
 class MenuList extends Component {
     
     componentDidMount(){
+        this.props.menuRequested();//перед тем как компонент будет загржен, появится этот action 
         const {RestServ} = this.props; //приходит из WithRestoService, а туда они приходит аж из app.js, а туда приходит из папки services/resto-service
 
         RestServ.getMenuItem() //экземпляр уже создан ранее в app.js. ПО этому можно сразу идти к getMenuItem. там мы получаем promise/ и сейчас его нужно обработать
@@ -16,12 +18,21 @@ class MenuList extends Component {
 
     }
 
+    componentDidCatch() {
+        this.props.menuError()
+    }
+
     render() {
         console.log(this.props);
-        const {menuItems} = this.props; //вытягиваем из props и сразу деструктурируем 
+        const {menuItems,loading } = this.props; //вытягиваем из props и сразу деструктурируем 
+
+        if(loading){
+            return <Spinner/>
+        }
 
         return (
             <ul className="menu__list">
+
                 {
                     menuItems.map(menuItem => {//приходит массив, который перебираем и потом данные по каждому пункту меню(ресторанное) передаем в menu-list-item b там каждое по отдельности рендерим 
                         return <MenuListItem 
@@ -36,7 +47,8 @@ class MenuList extends Component {
 
 const mapStateToProps = (state) => {
     return{
-        menuItems: state.menu //state.menu это то что мы создали в index.js, главный state.  Это записывается в menuItems, он вытягивается в render (в этом же файле) и тут же вытягивается, а потом он разбирается методом map b отправляется поштучно в MenuListItem, где уже подставляется в нужные места 
+        menuItems: state.menu, //state.menu это то что мы создали в index.js, главный state.  Это записывается в menuItems, он вытягивается в render (в этом же файле) и тут же вытягивается, а потом он разбирается методом map b отправляется поштучно в MenuListItem, где уже подставляется в нужные места 
+        loading: state.loading
     }
 }
 
@@ -49,6 +61,15 @@ const mapDispatchToProps = (dispatch) => {
                 type: 'MENU_LOADED',
                 payload: newMenu//newMenu это данные с сервера, они в файле reducer/index.js перезапишутся в menu, что в свою очередь перезапишет state, и уже из state это все будет рендерится 
             }) */
+        },
+        
+        menuRequested: () => { //теперь компонент умеет читать это действие и его использовать  (запуск action со спинером)
+            dispatch(menuRequested())
+            
+        },
+
+        menuError: () => {
+            dispatch(menuError())
         }
     }
 } 
