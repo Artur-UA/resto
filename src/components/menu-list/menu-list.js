@@ -6,6 +6,7 @@ import {menuLoaded, menuRequested, menuError} from '../../actions'
 
 import './menu-list.scss';
 import Spinner from '../spinner/spinner';
+import Error from '../error'
 
 class MenuList extends Component {
     
@@ -15,17 +16,21 @@ class MenuList extends Component {
 
         RestServ.getMenuItem() //экземпляр уже создан ранее в app.js. ПО этому можно сразу идти к getMenuItem. там мы получаем promise/ и сейчас его нужно обработать
         .then(res => this.props.menuLoaded(res))
+        .catch(error => this.props.menuError())
 
     }
 
-    componentDidCatch() {
+   /*  componentDidCatch() { ошибка обработана в .error 
         this.props.menuError()
-    }
+    } */
 
     render() {
         console.log(this.props);
-        const {menuItems,loading } = this.props; //вытягиваем из props и сразу деструктурируем 
+        const {menuItems,loading, error } = this.props; //вытягиваем из props и сразу деструктурируем 
 
+        if (error) {
+            return <Error/>
+        }
         if(loading){
             return <Spinner/>
         }
@@ -48,7 +53,8 @@ class MenuList extends Component {
 const mapStateToProps = (state) => {
     return{
         menuItems: state.menu, //state.menu это то что мы создали в index.js, главный state.  Это записывается в menuItems, он вытягивается в render (в этом же файле) и тут же вытягивается, а потом он разбирается методом map b отправляется поштучно в MenuListItem, где уже подставляется в нужные места 
-        loading: state.loading
+        loading: state.loading,
+        error: state.error
     }
 }
 

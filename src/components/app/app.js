@@ -14,6 +14,7 @@ const App = (/* {RestServ} */) => { //RestoService это то что приде
             <Switch>
                 <Route path='/' component={MainPage}/>
                 <Route path='/cart' component={CartPage}/>
+                <Route path='/:id' component={CartPage}/>
             </Switch>
         </div>
     )

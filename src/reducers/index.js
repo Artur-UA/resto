@@ -10,7 +10,7 @@ const reducer = (state = initialState, action) => {
             return{
                 menu: action.payload,
                 loading: false,
-
+                error: false
             };
         case 'MENU_REQUESTED':   // REQUESTED - обычно запрос к серверной части. 
             return{
@@ -18,7 +18,7 @@ const reducer = (state = initialState, action) => {
                 loading: true,
                 error: false
         };
-        case 'MENU_ERROR':   // ERROR - jib,rb
+        case 'MENU_ERROR':   // ERROR - ошибка 
         return{
             menu: state.menu, //если убрать вообще, то мы menu удалим вовсе. а так мы загружаем что есть в initial state 
             loading: false,

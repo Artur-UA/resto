@@ -10,20 +10,20 @@
 		{
 			"title": "Pizza Margherita",
 			"price": 10,
-			"url": "http://www.academiabarilla.com/anteprima_pizzamargherita_xhm1p-2_1200.jpg?h=faa3bae42d7180a508c490395249247ded3f362c",
+			"url": "https://image.freepik.com/free-photo/large-margherita-pizza-on-wooden-chopping-board_23-2147926084.jpg",
 			"category": "pizza",
 			"id": 2
 		},
 		{
 			"title": "Pizza Napoletana",
 			"price": 13,
-			"url": "https://www.pizzanapoletana.org/struttura/pagine_bicolor/mobile/decalogo_avpn_1.jpg",
+			"url": "https://avatars.mds.yandex.net/get-zen_doc/1368767/pub_5d64d70addfef600ae090ee5_5d64d8fda98a2a00aef8bcab/scale_1200",
 			"category": "pizza",
 			"id": 3
 		},
 		{
 			"title": "Greece salad",
-			"price": 8,
+			"price": 81,
 			"url": "https://assets.epicurious.com/photos/576454fb42e4a5ed66d1df6b/master/pass/greek-salad.jpg",
 			"category": "salads",
 			"id": 4
