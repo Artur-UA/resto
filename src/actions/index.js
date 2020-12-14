@@ -17,8 +17,15 @@ const menuError = () => {
     }
 }
 
+const onDelete = () => {
+    return{
+        type:'ON_DELETE'
+    }
+}
+
 export {
     menuLoaded,
     menuRequested,
-    menuError
+    menuError,
+    onDelete
 }

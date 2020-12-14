@@ -12,9 +12,9 @@ const App = (/* {RestServ} */) => { //RestoService это то что приде
         <div style={{background: `url(${Background}) center center/cover no-repeat`}} className="app">
             <AppHeader total={50}/>
             <Switch>
-                <Route path='/' component={MainPage}/>
-                <Route path='/cart' component={CartPage}/>
-                <Route path='/:id' component={CartPage}/>
+                <Route path='/' component = {MainPage}/>
+                <Route path='/cart' exact component = {CartPage}/>
+{/*                 <Route path='/:id' component={CartPage}/> */}
             </Switch>
         </div>
     )
