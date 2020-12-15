@@ -23,9 +23,16 @@ const onDelete = () => {
     }
 }
 
+const addCart = (id) => {
+    return{
+        type:'ADD_CART',
+        payload: id //id передается как параметр, по этому id мы будем знать что нужно добавить
+    }
+}
 export {
     menuLoaded,
     menuRequested,
     menuError,
-    onDelete
+    onDelete,
+    addCart
 }

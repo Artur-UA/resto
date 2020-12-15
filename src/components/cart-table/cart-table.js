@@ -12,7 +12,7 @@ const CartTable = ({items, onDelete}) => {//byaf придет из пропс и
                         const {title, price, url, id } = item;
                         return (
                             <div key={id} className="cart__item">
-                                <img src={url} alt={title}></img>
+                                <img src={url} alt={title} className='cart__item-img'></img>
                                 <div className="cart__item-title">{title}</div>
                                 <div className="cart__item-price">{price}$</div>
                                 <div onClick={() => onDelete(id)} className="cart__close">&times;</div>

@@ -2,7 +2,7 @@ const initialState = {//изначальный staste
     menu: [],
     loading: true,
     error: false,
-    items: [
+    items: [/* 
         {
 			"title": "Cesar salad",
 			"price": 112,
@@ -16,7 +16,7 @@ const initialState = {//изначальный staste
 			"url": "https://image.freepik.com/free-photo/large-margherita-pizza-on-wooden-chopping-board_23-2147926084.jpg",
 			"category": "pizza",
 			"id": 2
-		}
+		} */
     ]
 }
 
@@ -42,7 +42,25 @@ const reducer = (state = initialState, action) => {
                 menu: state.menu, //если убрать вообще, то мы menu удалим вовсе. а так мы загружаем что есть в initial state 
                 loading: false,
                 error: true
-    };
+        };
+        case 'ADD_CART': 
+            const id = action.payload; //сюда придет id, на которое было нажата мишка 
+            console.log(state.menu);
+            const item = state.menu.find(item => item.id === id);//находим по id на который нажато элемент. благодаря методу find отыскиваем его в списке и вставляем в const item 
+            console.log(item);
+            const newItem = {
+                title: item.title,
+                price: item.price,
+                url: item.url,
+                id: item.id
+            }
+            return{
+                ...state,
+                items: [     
+                    ...state.items,    //так как это массив, такие скобки, и чтобы при добавлении новых элементов не удалять старые, мы разворачиваем все элементы которые были здесь ранее, и просто в конец мы добавляем наш(который был нажт для добавления)
+                    newItem
+                    ]
+        };
         default: 
             return state;
     }
