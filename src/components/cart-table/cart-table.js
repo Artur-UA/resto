@@ -1,6 +1,7 @@
 import React from 'react';
 import './cart-table.scss';
 import {connect} from 'react-redux'
+import{onDelete} from '../../actions'
 
 const CartTable = ({items, onDelete}) => {//byaf придет из пропс и сразу будет деструктуризирована 
     return (
@@ -33,8 +34,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return{
         onDelete: (id) => {
-            console.log(`Удалили ${id}`)
-/*             dispatch(onDelete(id)) */
+            dispatch(onDelete(id))
+            
+            /* console.log(`Удалили ${id}`) */
         }
     }
 }

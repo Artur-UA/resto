@@ -45,7 +45,6 @@ const reducer = (state = initialState, action) => {
         };
         case 'ADD_CART': 
             const id = action.payload; //сюда придет id, на которое было нажата мишка 
-            console.log(state.menu);
             const item = state.menu.find(item => item.id === id);//находим по id на который нажато элемент. благодаря методу find отыскиваем его в списке и вставляем в const item 
             console.log(item);
             const newItem = {
@@ -61,6 +60,18 @@ const reducer = (state = initialState, action) => {
                     newItem
                     ]
         };
+        case 'ON_DELETE':
+            const ids = action.payload;//сюда придет id, на которое было нажата мишка 
+            console.log(ids);
+            const itemsa = state.items.find(item => item.id === ids);//находим по id на который нажато элемент. благодаря методу find отыскиваем его в списке и вставляем в const itemsa
+            console.log(itemsa);
+            return{
+                ...state,
+                 items: [
+                    ...state.items.slice(0,itemsa), //раскрывает массив и режет его от 0 элемента до элемента на который было нажато(не включая его)
+                    ...state.items.slice(itemsa + 1)//режет массив от следующего элемента после нажатия
+                 ]
+            }
         default: 
             return state;
     }

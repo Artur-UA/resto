@@ -17,9 +17,10 @@ const menuError = () => {
     }
 }
 
-const onDelete = () => {
+const onDelete = (id) => {
     return{
-        type:'ON_DELETE'
+        type:'ON_DELETE',
+        payload: id
     }
 }
 
